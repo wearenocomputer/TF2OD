@@ -18,12 +18,12 @@ REQUIRED_PACKAGES = [
     'lvis',
     'scipy',
     'pandas',
-    'jupyter notebook',
+    'notebook',
     'protobuf==3.20.0',
     'tensorflow==2.7.0',
     'tf-models-official==2.7.0',
     'tensorflow_io==0.23.1',
-    'keras',
+    'keras==2.7.0',
     'pyparsing==2.4.7'  # TODO(b/204103388)
 ]
 
