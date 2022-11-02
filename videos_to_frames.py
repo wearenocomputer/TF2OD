@@ -1,7 +1,20 @@
 import os
 import subprocess
 import shutil
-directory = "./take_2"
+directory = "./dataset"
+
+
+#folder structure
+#root
+    #ffmpeg.exe
+    #thisscript.py
+    #folder_dataset
+        #folder_category_a
+            #movie1.mov
+            #movie2.mp4
+        #folder_category_b
+            #movie_1.mov
+            #movie_2.mov
 
 print("START")
 
@@ -11,13 +24,16 @@ def createFrames():
     
     for folder in folders:    
         full_folder_path = os.path.join(directory,folder)
+       
         if os.path.isdir(full_folder_path):
             #create a folder named frames
             path = os.path.join(full_folder_path, "frames")
             if not os.path.exists(path):
                 os.mkdir(path)
+
+           
             movies = os.listdir(full_folder_path)
-            
+           
             for movie in movies:
                 file_path = os.path.join(full_folder_path,movie)
                 if os.path.isfile(file_path):
@@ -102,7 +118,7 @@ def balance():
             print("TOTAL DELETED ",totalcount)
             print("*****************************")
 
-#createFrames()
+createFrames()
 #cleanUPCurated()
 #curateFrames()
-balance()
+#balance()
