@@ -1,6 +1,7 @@
 import os
 import subprocess
 import shutil
+import random
 directory = "./dataset"
 
 
@@ -69,7 +70,7 @@ def curateFrames():
             print("CREATING ",source_folder, target_folder)
             source_frames = os.listdir(source_folder)
             for count, element in enumerate(source_frames, 0): # Start counting from 1
-                if count % 8 == 0:
+                if count % 1 == 0:
                     source_file = os.path.join(source_folder, element)
                     target_file = os.path.join(target_folder, element)
                     shutil.copy(source_file, target_file)
@@ -87,7 +88,7 @@ def cleanUPCurated():
 
 
 def balance():
-    max_number = 1100
+    max_number = 870
     global directory
     folders = os.listdir(directory)
     for folder in folders:    
@@ -99,26 +100,13 @@ def balance():
         if number_to_delete>0:
             print("DELETE FILES ", full_folder_path, len(files))
             print("TOTAL TO DELETE ",number_to_delete)
-            every_n = round(len(files)/number_to_delete)  
-            print("DELETE EVERY ",every_n)
-           
-            ccount = 0
-            totalcount = 0
-
-            for file in files:
-                if ccount == every_n:
-                    ccount = 0
-                    totalcount = totalcount+1
-                    full_file_path = os.path.join(full_folder_path,file)
-                    print(full_file_path)
-                    os.remove(full_file_path)
-
-                ccount = ccount+1
-
-            print("TOTAL DELETED ",totalcount)
+            files = random.sample(files, number_to_delete) 
+            for file in files:  # Go over each file name to be deleted
+                full_file_path = os.path.join(full_folder_path,file)
+                os.remove(full_file_path)  # Remove the file
             print("*****************************")
 
-createFrames()
+#createFrames()
 #cleanUPCurated()
 #curateFrames()
-#balance()
+balance()
